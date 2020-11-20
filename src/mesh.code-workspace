@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../esp8266-mesh-gw"
+		},
+		{
+			"name": "esp8266-mesh-node",
+			"path": ".."
+		},
+		{
+			"name": "esp8266-node15",
+			"path": "../../esp8266-node15"
+		}
+	],
+	"settings": {}
+}
