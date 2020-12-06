@@ -1,6 +1,6 @@
 # ESP mesh PIR sensor
 
-Sample mesh node project.  
+Example mesh node project.  
 Part of the ESP Flooding mesh project.  
 Works with mesh mqtt gateway: https://github.com/leodesigner/esp_mesh_gw_node  
 
