@@ -62,13 +62,11 @@ void printMemory();
 // First field is CRC32, which is calculated based on the
 // rest of structure contents.
 // Any fields can go after CRC32.
-// We use byte array as an example.
 struct {
   uint32_t crc32;
   uint32_t mode;
   char ssid[32];
   char pwd[32];
-  // byte data[508];
 } rtcData;
 
 // Adafruit_BMP280 bme; // I2C
@@ -77,10 +75,11 @@ struct {
 // node boot time
 time_t boot_time;
 
-#if defined __has_include
-#  if __has_include (<espmesh.h>)
-#    include <espmesh.h>
-#  else
+
+// your private mesh secret keys
+#include <espmesh.h>
+
+#ifndef ESP_NOW_CHANNEL
      // default - change this
      #define AP_PWD          "12345678"
      #define ESP_NOW_CHANNEL 1
@@ -91,11 +90,10 @@ time_t boot_time;
                                       0x77, 0x88, 0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF};
      int bsid = 0x010101;
      const int ttl = 3;
-#  endif
 #endif
 
 /******** MESH NODE SETUP ********/
-#define DEVICENAME      "pir1round"
+#define DEVICENAME      "pir2round"
 #define AP_NAME         "MESH_" DEVICENAME
 #define AP_NAME_OTA     "MESH_OTA_" DEVICENAME
 const char deviceName[] = DEVICENAME;
@@ -465,7 +463,7 @@ void setup() {
     WiFi.mode(WIFI_OFF);
     WiFi.mode(WIFI_STA);
     WiFi.disconnect();
-    delay(300);
+    delay(3000);
     ESP.restart();
   }
   Serial.print(">After sync TS: "); Serial.println(millis() - start_time);
